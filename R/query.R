@@ -7,7 +7,7 @@
     content(res, ...)
 }
 
-## utiilities
+## utilities
 
 .null_cohort <- "(unassigned)"
 
