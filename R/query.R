@@ -118,6 +118,31 @@
         '        :left-join [:feature [:= :feature.field_id :field.id]]})')
 }
 
+.features_any_query <- function(what) sprintf('
+    (query{
+        :select [:field.name :feature.longtitle]
+        :from [:field]
+        :where [:in :dataset_id {
+            :select [:id]
+            :from [:dataset]
+            :where [:in %s]
+        }]
+        :left-join [:feature [:= :feature.field_id :field.id]]
+    })
+', what)
+
+.features_all_query <- function(where, what, n) sprintf('
+    (query{
+        :select [:field.name :feature.longtitle]
+        :from [:field]
+        :where [:in :dataset_id {
+            :select [:id]
+            :from [:dataset]
+            :where [:in %s]
+        }]
+        :left-join [:feature [:= :feature.field_id :field.id]]
+    })
+')
 ##
 ## actions
 ## 
